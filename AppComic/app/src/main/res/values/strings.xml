@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppComic</string>
+    <string name="btn_search">Tìm kiếm</string>
+    <string name="btn_filter">Lọc truyện</string>
+    <string name="tv_ListComic">Danh sách truyện</string>
+    <string name="txt_chapter">CHAPTER (10)</string>
+    <string name="txt_chapter_name">NO PAGE NUMBER</string>
+    <string name="edt_search">Nhập tên truyện...</string>
+</resources>
