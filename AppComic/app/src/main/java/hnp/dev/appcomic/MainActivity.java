@@ -5,14 +5,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import dmax.dialog.SpotsDialog;
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import hnp.dev.appcomic.Adapter.MyComicAdapter;
 import hnp.dev.appcomic.Adapter.MySliderAdapter;
 import hnp.dev.appcomic.Common.Common;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recycler_comic;
     TextView txt_comic;
 
+    KProgressHUD dialog;
+
     SwipeRefreshLayout swipeRefreshLayout;
 
     ImageView btn_search;
@@ -45,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
         //View
         btn_search = findViewById(R.id.btn_filter);
         btn_search.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CategoryFilter.class)));
+
+        //Dialog
+        dialog = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(1)
+                .setDimAmount(0.5f).setWindowColor(Color.TRANSPARENT);
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.purple_200,
@@ -92,11 +102,10 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(banners -> slider.setAdapter(new MySliderAdapter(banners))
-                        , throwable -> Toast.makeText(MainActivity.this, "Không thể load banner", Toast.LENGTH_SHORT).show()));
+                        , throwable -> Toast.makeText(MainActivity.this, "Vui lòng mở Server!", Toast.LENGTH_SHORT).show()));
     }
 
     private void fetchComic() {
-        AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
         if (!swipeRefreshLayout.isRefreshing())
             dialog.show();
 
@@ -115,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!swipeRefreshLayout.isRefreshing())
                         dialog.dismiss();
                     swipeRefreshLayout.setRefreshing(false);
-                    Toast.makeText(MainActivity.this, "Không có truyện để load", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Vui lòng mở Server!", Toast.LENGTH_SHORT).show();
                 }));
     }
-
 }

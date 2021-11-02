@@ -21,23 +21,24 @@ public class Common {
     public static List<Chapter> chapterList = new ArrayList<>();
     public static List<Category> categories = new ArrayList<>();
 
+    //Cái này để gọi Api fetch data từ server về
     public static IComicAPI getAPI() {
         return RetrofitClient.getInstance().create(IComicAPI.class);
     }
 
     public static String formatString(String name) {
-        //If character is too long, just substring
-        StringBuilder finalResult = new StringBuilder(name.length() > 15 ? name.substring(0, 15) + "..." : name);
-        return  finalResult.toString();
+        //Này có thể hiểu là nếu tên của chapter nhiều hơn 25 thì sau ký tự 25 là ... ngược lại thì in ra tên
+        return (name.length() > 30 ? name.substring(0, 25) + "..." : name);
     }
 
+    // Lớp này để kiểm tra có kết nối mạng hay không
     public static boolean isConnectedToInternet(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {
             NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
             if(info !=null){
-                for (int i=0;i<info.length;i++){
-                    if(info[i].getState() == NetworkInfo.State.CONNECTED)
+                for (NetworkInfo networkInfo : info) {
+                    if (networkInfo.getState() == NetworkInfo.State.CONNECTED)
                         return true;
                 }
             }

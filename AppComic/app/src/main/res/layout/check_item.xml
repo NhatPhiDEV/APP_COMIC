@@ -6,9 +6,9 @@
     
     <CheckBox
         android:id="@+id/check_options"
-        android:text="Options"
-        android:fontFamily="@font/roboto_slab"
-        android:textSize="20sp"
+        android:text="@string/check_options"
+        android:fontFamily="@font/font_text"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </RelativeLayout>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
+    android:padding="8dp"
     android:background="@color/columnColor"
     android:layout_width="match_parent"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="5dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -10,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/textColor"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:text="Chapter 1"
-        android:textSize="16sp" />
+        android:fontFamily="@font/font_text"
+        android:text="@string/tv_chapter_number"
+        android:textSize="18sp" />
 
 </RelativeLayout>

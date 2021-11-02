@@ -1,5 +1,6 @@
 package hnp.dev.appcomic.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import hnp.dev.appcomic.Common.Common;
-import hnp.dev.appcomic.Interface.IRecyclerOnClick;
+import hnp.dev.appcomic.Interface.MyRecyclerOnClick;
 import hnp.dev.appcomic.Model.Chapter;
 import hnp.dev.appcomic.R;
 import hnp.dev.appcomic.ViewDetail;
@@ -36,13 +37,13 @@ public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.MyVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder,int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txt_chapter_number.setText(new StringBuffer(chapterList.get(position).Name));
 
         Common.selected_chapter = chapterList.get(position);
         Common.chapter_index = position;
 
-        holder.setiRecyclerOnClick((view, position1) -> {
+        holder.setMyRecyclerOnClick((view, position1) -> {
             Common.selected_chapter =chapterList.get(position1);
             Common.chapter_index = position1;
             Intent intent = new Intent(context,ViewDetail.class);
@@ -58,9 +59,9 @@ public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txt_chapter_number;
-        IRecyclerOnClick iRecyclerOnClick;
+        MyRecyclerOnClick iRecyclerOnClick;
 
-        public void setiRecyclerOnClick(IRecyclerOnClick iRecyclerOnClick) {
+        public void setMyRecyclerOnClick(MyRecyclerOnClick iRecyclerOnClick) {
             this.iRecyclerOnClick = iRecyclerOnClick;
         }
 

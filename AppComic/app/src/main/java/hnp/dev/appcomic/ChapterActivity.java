@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import dmax.dialog.SpotsDialog;
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import hnp.dev.appcomic.Adapter.MyChapterAdapter;
 import hnp.dev.appcomic.Common.Common;
 import hnp.dev.appcomic.Retrofit.IComicAPI;
@@ -25,6 +27,7 @@ public class ChapterActivity extends AppCompatActivity {
     RecyclerView recycler_chapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     TextView txt_chapter;
+    KProgressHUD dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class ChapterActivity extends AppCompatActivity {
         //View
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(Common.selected_comic.getName());
+
         //Set icon for toolbar
         toolbar.setNavigationIcon(R.drawable.ic_chevron_left);
         toolbar.setNavigationOnClickListener(v -> {
@@ -55,7 +59,11 @@ public class ChapterActivity extends AppCompatActivity {
     }
 
     private void fetchChapter(int comicId) {
-        AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
+        dialog = KProgressHUD.create(this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false)
+                .setAnimationSpeed(1)
+                .setDimAmount(0.5f).setWindowColor(Color.TRANSPARENT);
         dialog.show();
 
         compositeDisposable.add(iComicAPI.getChapterList(comicId)
@@ -64,14 +72,19 @@ public class ChapterActivity extends AppCompatActivity {
                 .subscribe(chapters -> {
                     Common.chapterList = chapters; //Save chapter to back, next
                     recycler_chapter.setAdapter(new MyChapterAdapter(getBaseContext(), chapters));
-                    txt_chapter.setText(new StringBuilder("Chương (")
+                    txt_chapter.setText(new StringBuilder("Số Chương (")
                     .append(chapters.size())
                     .append(")"));
-                    dialog.dismiss();
+                    scheduleDismiss();
                 }, throwable -> {
                     Toast.makeText(ChapterActivity.this, "Chương này chưa được dịch", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+                    scheduleDismiss();
                 }));
+    }
+
+    private void scheduleDismiss() {
+        Handler handler = new Handler();
+        handler.postDelayed(() -> dialog.dismiss(), 500);
     }
 
     @Override

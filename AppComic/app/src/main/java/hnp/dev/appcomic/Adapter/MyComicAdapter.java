@@ -17,7 +17,7 @@ import java.util.List;
 
 import hnp.dev.appcomic.ChapterActivity;
 import hnp.dev.appcomic.Common.Common;
-import hnp.dev.appcomic.Interface.IRecyclerOnClick;
+import hnp.dev.appcomic.Interface.MyRecyclerOnClick;
 import hnp.dev.appcomic.Model.Comic;
 import hnp.dev.appcomic.R;
 
@@ -26,6 +26,7 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
     Context context;
     List<Comic> comicList;
 
+    //Đối tượng để truyền data từ server vào
     public MyComicAdapter(Context context, List<Comic> comicList) {
         this.context = context;
         this.comicList = comicList;
@@ -38,13 +39,14 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
         return new MyViewHolder(itemView);
     }
 
+    // Hiển thị dữ liệu lên view
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Picasso.get().load(comicList.get(position).getImage()).into(holder.imageView);
         holder.textView.setText(comicList.get(position).getName());
 
         //Remember implement it, if you not do that, your app when crash when you click to comic
-        holder.setiRecyclerOnClick((view, position1) -> {
+        holder.setMyRecyclerOnClick((view, position1) -> {
             //start new activity
             Intent intent = new Intent(context, ChapterActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -53,17 +55,19 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
         });
     }
 
+    // Trả về số lượng các item trong danh sách truyền vô ở trên
     @Override
     public int getItemCount() {
         return comicList.size();
     }
 
+    //Lớp này để ánh xạ các thành phần trên layout về để truyền dữ liệu lên
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
-        IRecyclerOnClick iRecyclerOnClick;
+        MyRecyclerOnClick iRecyclerOnClick;
 
-        public void setiRecyclerOnClick(IRecyclerOnClick iRecyclerOnClick) {
+        public void setMyRecyclerOnClick(MyRecyclerOnClick iRecyclerOnClick) {
             this.iRecyclerOnClick = iRecyclerOnClick;
         }
 

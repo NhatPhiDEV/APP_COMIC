@@ -14,35 +14,38 @@
         android:layout_height="wrap_content"
         android:background="@android:color/black"
         android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
         app:titleTextColor="@color/textColor"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="10dp"
         android:weightSum="4">
 
         <TextView
             android:id="@+id/txt_chapter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:fontFamily="@font/roboto_slab_bold"
+            android:layout_weight="1.7"
+            android:fontFamily="@font/font_text"
             android:text="@string/txt_chapter"
             android:textColor="@color/textColor"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="3dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="2"
+            android:layout_weight="2.3"
             android:background="@drawable/horizontal_line" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_chapter"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -21,8 +21,10 @@
             android:layout_weight="1"
             android:layout_marginEnd="5dp"
             android:drawableLeft="@drawable/ic_filter"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:text="@string/btn_filter" />
+            android:textSize="18sp"
+            android:fontFamily="@font/font_text"
+            android:text="@string/btn_filter"
+            tools:ignore="ButtonStyle,RtlHardcoded" />
         <Button
             android:id="@+id/btn_search"
             android:layout_width="0dp"
@@ -30,25 +32,27 @@
             android:layout_weight="1"
             android:layout_marginStart="5dp"
             android:drawableLeft="@drawable/ic_search"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:text="@string/btn_search" />
+            android:fontFamily="@font/font_text"
+            android:textSize="18sp"
+            android:text="@string/btn_search"
+            tools:ignore="ButtonStyle,RtlHardcoded" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:padding="10dp"
         android:weightSum="4">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.2"
-            android:fontFamily="@font/roboto_slab_bold"
+            android:layout_weight="2.3"
+            android:fontFamily="@font/font_text"
             android:text="@string/tv_ListComic"
             android:textColor="@color/textColor"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
         <View
             android:layout_width="0dp"

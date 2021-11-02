@@ -59,5 +59,9 @@ dependencies {
     //EasyFlipViewPaper - to create transformer animation
     implementation('com.wajahatkarim3.easyflipviewpager:easyflipviewpager:2.0.0')
 
+    //Layout refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //Dialog
+    implementation('com.kaopiz:kprogresshud:1.0.2')
 }

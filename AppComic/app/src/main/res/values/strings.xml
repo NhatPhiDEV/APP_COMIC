@@ -1,9 +1,15 @@
 <resources>
-    <string name="app_name">AppComic</string>
+    <string name="app_name">Truyện Hay</string>
     <string name="btn_search">Tìm kiếm</string>
     <string name="btn_filter">Lọc truyện</string>
     <string name="tv_ListComic">Danh sách truyện</string>
     <string name="txt_chapter">CHAPTER (10)</string>
     <string name="txt_chapter_name">NO PAGE NUMBER</string>
     <string name="edt_search">Nhập tên truyện...</string>
+    <string name="manga_name">X MAN</string>
+    <string name="tv_chapter_number">Chapter 1</string>
+    <string name="check_options">Options</string>
+    <string name="tv_dialog">Lọc truyện theo loại</string>
+    <string name="btn_cancel">Hủy bỏ</string>
+    <string name="tv_search">Tìm kiếm theo tên</string>
 </resources>

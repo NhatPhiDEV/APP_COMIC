@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp"
+            android:padding="10dp"
             android:weightSum="4">
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
-                android:fontFamily="@font/roboto_slab_bold"
+                android:fontFamily="@font/font_text"
                 android:text="@string/tv_ListComic"
                 android:textColor="@color/textColor"
                 android:textSize="22sp" />
